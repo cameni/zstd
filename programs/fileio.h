@@ -8,7 +8,11 @@
  */
 
 
-#pragma once
+#ifndef FILEIO_H_23981798732
+#define FILEIO_H_23981798732
+
+#define ZSTD_STATIC_LINKING_ONLY   /* ZSTD_compressionParameters */
+#include "zstd.h"                  /* ZSTD_* */
 
 #if defined (__cplusplus)
 extern "C" {
@@ -18,25 +22,39 @@ extern "C" {
 /* *************************************
 *  Special i/o constants
 **************************************/
-#define stdinmark "stdin"
-#define stdoutmark "stdout"
+#define stdinmark  "/*stdin*\\"
+#define stdoutmark "/*stdout*\\"
 #ifdef _WIN32
 #  define nulmark "nul"
 #else
 #  define nulmark "/dev/null"
 #endif
+#define LZMA_EXTENSION  ".lzma"
+#define XZ_EXTENSION    ".xz"
+#define GZ_EXTENSION    ".gz"
+#define ZSTD_EXTENSION  ".zst"
+
+
+/*-*************************************
+*  Types
+***************************************/
+typedef enum { FIO_zstdCompression, FIO_gzipCompression, FIO_xzCompression, FIO_lzmaCompression } FIO_compressionType_t;
 
 
 /*-*************************************
 *  Parameters
 ***************************************/
+void FIO_setCompressionType(FIO_compressionType_t compressionType);
 void FIO_overwriteMode(void);
 void FIO_setNotificationLevel(unsigned level);
-void FIO_setMaxWLog(unsigned maxWLog);     /**< if `maxWLog` == 0, no max enforced */
 void FIO_setSparseWrite(unsigned sparse);  /**< 0: no sparse; 1: disable on stdout; 2: always enabled */
 void FIO_setDictIDFlag(unsigned dictIDFlag);
 void FIO_setChecksumFlag(unsigned checksumFlag);
 void FIO_setRemoveSrcFile(unsigned flag);
+void FIO_setMemLimit(unsigned memLimit);
+void FIO_setNbThreads(unsigned nbThreads);
+void FIO_setBlockSize(unsigned blockSize);
+void FIO_setOverlapLog(unsigned overlapLog);
 
 
 /*-*************************************
@@ -44,7 +62,8 @@ void FIO_setRemoveSrcFile(unsigned flag);
 ***************************************/
 /** FIO_compressFilename() :
     @return : 0 == ok;  1 == pb with src file. */
-int FIO_compressFilename (const char* outfilename, const char* infilename, const char* dictFileName, int compressionLevel);
+int FIO_compressFilename (const char* outfilename, const char* infilename, const char* dictFileName,
+                          int compressionLevel, ZSTD_compressionParameters* comprParams);
 
 /** FIO_decompressFilename() :
     @return : 0 == ok;  1 == pb with src file. */
@@ -58,7 +77,8 @@ int FIO_decompressFilename (const char* outfilename, const char* infilename, con
     @return : nb of missing files */
 int FIO_compressMultipleFilenames(const char** srcNamesTable, unsigned nbFiles,
                                   const char* suffix,
-                                  const char* dictFileName, int compressionLevel);
+                                  const char* dictFileName, int compressionLevel,
+                                  ZSTD_compressionParameters* comprParams);
 
 /** FIO_decompressMultipleFilenames() :
     @return : nb of missing or skipped files */
@@ -70,3 +90,5 @@ int FIO_decompressMultipleFilenames(const char** srcNamesTable, unsigned nbFiles
 #if defined (__cplusplus)
 }
 #endif
+
+#endif  /* FILEIO_H_23981798732 */

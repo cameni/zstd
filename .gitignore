@@ -1,6 +1,7 @@
 # Object files
 *.o
 *.ko
+*.dSYM
 
 # Libraries
 *.lib
@@ -14,13 +15,14 @@
 
 # Executables
 zstd
+zstdmt
 *.exe
 *.out
 *.app
 
 # Test artefacts
 tmp*
-dictionary
+dictionary*
 
 # Other files
 .directory
@@ -30,3 +32,10 @@ _zstdbench/
 *.idea
 *.swp
 .DS_Store
+googletest/
+*.d
+
+# Directories
+bin/
+.buckd/
+buck-out/

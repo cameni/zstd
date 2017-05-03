@@ -7,6 +7,8 @@ zstd-decompress
 # Object files
 *.o
 *.ko
+default.profraw
+have_zlib
 
 # Executables
 *.exe

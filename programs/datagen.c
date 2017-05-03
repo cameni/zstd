@@ -9,34 +9,14 @@
 
 
 
-/* *************************************
-*  Compiler Options
-***************************************/
-#if defined(_MSC_VER)
-#  define _CRT_SECURE_NO_WARNINGS    /* removes Visual warning on strerror() */
-#  define _CRT_SECURE_NO_DEPRECATE   /* removes VS2005 warning on strerror() */
-#endif
-
 /*-************************************
 *  Dependencies
 **************************************/
-#include <stdlib.h>    /* malloc */
+#include "platform.h"  /* SET_BINARY_MODE */
+#include <stdlib.h>    /* malloc, free */
 #include <stdio.h>     /* FILE, fwrite, fprintf */
 #include <string.h>    /* memcpy */
-#include <errno.h>     /* errno */
 #include "mem.h"       /* U32 */
-
-
-/*-************************************
-*  OS-specific Includes
-**************************************/
-#if defined(MSDOS) || defined(OS2) || defined(WIN32) || defined(_WIN32) || defined(__CYGWIN__)
-#  include <fcntl.h>   /* _O_BINARY */
-#  include <io.h>      /* _setmode, _isatty */
-#  define SET_BINARY_MODE(file) {int unused = _setmode(_fileno(file), _O_BINARY); (void)unused; }
-#else
-#  define SET_BINARY_MODE(file)
-#endif
 
 
 /*-************************************
@@ -176,7 +156,7 @@ void RDG_genStdout(unsigned long long size, double matchProba, double litProba, 
     BYTE ldt[LTSIZE];   /* literals distribution table */
 
     /* init */
-    if (buff==NULL) { fprintf(stderr, "datagen: error: %s \n", strerror(errno)); exit(1); }
+    if (buff==NULL) { perror("datagen"); exit(1); }
     if (litProba<=0.0) litProba = matchProba / 4.5;
     memset(ldt, '0', sizeof(ldt));   /* yes, character '0', this is intentional */
     RDG_fillLiteralDistrib(ldt, litProba);
