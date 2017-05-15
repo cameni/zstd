@@ -40,7 +40,7 @@
 #include "zstd.h"
 #include "datagen.h"     /* RDG_genBuffer */
 #include "xxhash.h"
-#include "zstdmt_compress.h"
+#include "compress/zstdmt_compress.h"
 
 
 /* *************************************
