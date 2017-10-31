@@ -19,35 +19,49 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\lib\common\entropy_common.c" />
-    <ClCompile Include="..\..\..\lib\common\error_private.c" />
-    <ClCompile Include="..\..\..\lib\common\pool.c" />
-    <ClCompile Include="..\..\..\lib\common\threading.c" />
-    <ClCompile Include="..\..\..\lib\common\xxhash.c" />
-    <ClCompile Include="..\..\..\lib\common\zstd_common.c" />
-    <ClCompile Include="..\..\..\lib\common\fse_decompress.c" />
-    <ClCompile Include="..\..\..\lib\compress\fse_compress.c" />
-    <ClCompile Include="..\..\..\lib\compress\huf_compress.c" />
-    <ClCompile Include="..\..\..\lib\compress\zstd_compress.c" />
-    <ClCompile Include="..\..\..\lib\decompress\huf_decompress.c" />
-    <ClCompile Include="..\..\..\lib\decompress\zstd_decompress.c" />
-    <ClCompile Include="..\..\..\lib\dictBuilder\divsufsort.c" />
-    <ClCompile Include="..\..\..\lib\dictBuilder\zdict.c" />
     <ClInclude Include="..\..\..\lib\common\bitstream.h" />
+    <ClInclude Include="..\..\..\lib\common\compiler.h" />
     <ClInclude Include="..\..\..\lib\common\error_private.h" />
-    <ClInclude Include="..\..\..\lib\common\mem.h" />
     <ClInclude Include="..\..\..\lib\common\fse.h" />
     <ClInclude Include="..\..\..\lib\common\huf.h" />
+    <ClInclude Include="..\..\..\lib\common\mem.h" />
     <ClInclude Include="..\..\..\lib\common\pool.h" />
     <ClInclude Include="..\..\..\lib\common\threading.h" />
     <ClInclude Include="..\..\..\lib\common\xxhash.h" />
     <ClInclude Include="..\..\..\lib\common\zstd_errors.h" />
-    <ClInclude Include="..\..\..\lib\zstd.h" />
     <ClInclude Include="..\..\..\lib\common\zstd_internal.h" />
+    <ClInclude Include="..\..\..\lib\compress\zstdmt_compress.h" />
+    <ClInclude Include="..\..\..\lib\compress\zstd_compress.h" />
+    <ClInclude Include="..\..\..\lib\compress\zstd_double_fast.h" />
+    <ClInclude Include="..\..\..\lib\compress\zstd_fast.h" />
+    <ClInclude Include="..\..\..\lib\compress\zstd_lazy.h" />
+    <ClInclude Include="..\..\..\lib\compress\zstd_ldm.h" />
     <ClInclude Include="..\..\..\lib\compress\zstd_opt.h" />
+    <ClInclude Include="..\..\..\lib\dictBuilder\divsufsort.h" />
+    <ClInclude Include="..\..\..\lib\dictBuilder\zdict.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="zstdlib.rc" />
+    <ClCompile Include="..\..\..\lib\common\entropy_common.c" />
+    <ClCompile Include="..\..\..\lib\common\error_private.c" />
+    <ClCompile Include="..\..\..\lib\common\fse_decompress.c" />
+    <ClCompile Include="..\..\..\lib\common\pool.c" />
+    <ClCompile Include="..\..\..\lib\common\threading.c" />
+    <ClCompile Include="..\..\..\lib\common\xxhash.c" />
+    <ClCompile Include="..\..\..\lib\common\zstd_common.c" />
+    <ClCompile Include="..\..\..\lib\compress\fse_compress.c" />
+    <ClCompile Include="..\..\..\lib\compress\huf_compress.c" />
+    <ClCompile Include="..\..\..\lib\compress\zstdmt_compress.c" />
+    <ClCompile Include="..\..\..\lib\compress\zstd_compress.c" />
+    <ClCompile Include="..\..\..\lib\compress\zstd_double_fast.c" />
+    <ClCompile Include="..\..\..\lib\compress\zstd_fast.c" />
+    <ClCompile Include="..\..\..\lib\compress\zstd_lazy.c" />
+    <ClCompile Include="..\..\..\lib\compress\zstd_ldm.c" />
+    <ClCompile Include="..\..\..\lib\compress\zstd_opt.c" />
+    <ClCompile Include="..\..\..\lib\decompress\huf_decompress.c" />
+    <ClCompile Include="..\..\..\lib\decompress\zstd_decompress.c" />
+    <ClCompile Include="..\..\..\lib\dictBuilder\cover.c" />
+    <ClCompile Include="..\..\..\lib\dictBuilder\divsufsort.c" />
+    <ClCompile Include="..\..\..\lib\dictBuilder\zdict.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8BFD8150-94D5-4BF9-8A50-7BD9929A0850}</ProjectGuid>
